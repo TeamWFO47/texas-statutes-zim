@@ -1,0 +1,5 @@
+# build output lives in $TXLAW_WORK, outside the repo; ignore strays just in case
+*.zim
+site/
+source/
+__pycache__/
