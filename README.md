@@ -1,24 +1,48 @@
-# texas-statutes-zim
+# Texas Constitution & Statutes for Kiwix
 
-Build an offline [Kiwix](https://kiwix.org) ZIM of the **Texas Constitution and all 30 Texas codes**. Each chapter is one page, and every statute cross-reference is rewritten to link inside the archive, so the links work with no internet connection.
+All of Texas state law in one offline file you can search and read in [Kiwix](https://kiwix.org), with no internet needed.
 
-There is no Texas law ZIM in the Kiwix catalog. These scripts build one from public data in about 5 minutes, and the result is about 31 MB.
+## [⬇ Download texas-statutes_en_all_2026-03.zim (31 MB)](https://github.com/TeamWFO47/texas-statutes-zim/releases/download/v2026.03/texas-statutes_en_all_2026-03.zim)
 
-**Download:** the ready-built ZIM is on the [v2026.03 release](https://github.com/TeamWFO47/texas-statutes-zim/releases/tag/v2026.03): `texas-statutes_en_all_2026-03.zim`, 31.2 MB, SHA256 `902f527fb7d4399fbd5826cd1314f7529dee68563e81acfe7e7d9c53c2f47fac`. Put it in your Kiwix library folder and rescan. You only need the build steps below if you want to build it yourself.
+From the [v2026.03 release](https://github.com/TeamWFO47/texas-statutes-zim/releases/tag/v2026.03). SHA256: `902f527fb7d4399fbd5826cd1314f7529dee68563e81acfe7e7d9c53c2f47fac`
 
-> **Not an official publication.** This is an unofficial offline copy for reference. It is not affiliated with the State of Texas, the Texas Legislative Council, or any government agency. For anything that matters legally, check the official source at [statutes.capitol.texas.gov](https://statutes.capitol.texas.gov/) or ask a lawyer.
+## Install
 
-## What's in the ZIM
+You need Kiwix already running. Nothing else.
 
-- The Texas Constitution, plus the 30 codes published by the Texas Legislative Council (TLC). That includes Penal, Family, Transportation, Property, Government, Health and Safety, Education, Water, Tax, Occupations, Parks and Wildlife, Vernon's Civil Statutes and the Auxiliary Water Laws.
+1. **Download the file** using the link above.
+2. **Put it in your Kiwix zim folder.** On Project N.O.M.A.D. that folder is `/opt/project-nomad/storage/zim/`. You can drop the file there with FileBrowser, in its `zim` folder, or copy it in from a terminal. On Kiwix desktop or the Android app, just open the file.
+3. **Rescan your library.** On Project N.O.M.A.D., open the Kiwix page and press **Rescan Library**. It shows up as **Texas Constitution & Statutes**.
+
+## What's in it
+
+- The Texas Constitution and all 30 Texas codes: Penal, Family, Transportation, Property, Government, Health and Safety, Education, Water, Tax, Occupations, Parks and Wildlife, and the rest.
+- You can search all of it, by section number or by words.
+- It works with no internet. When one law points to another, you can click straight through to it.
+- Tables and fee schedules are included.
+
+## Before you rely on it
+
+- **It's a snapshot.** It is current through the 89th Legislature, 2nd Called Session, 2025 (and constitutional amendments approved in November 2025), as of **26 March 2026**. Later changes aren't in it.
+- **It's not official.** This is an unofficial copy for reference. It isn't affiliated with the State of Texas or any government agency. For anything that matters legally, check [statutes.capitol.texas.gov](https://statutes.capitol.texas.gov/) or ask a lawyer.
+- **It doesn't cover everything.** Agency rules (the Texas Administrative Code), court opinions, city and county ordinances, and federal law are not included.
+
+Law text comes from the Texas Legislative Council. The data comes from [OpenStatutes.org](https://openstatutes.org/texconst/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+---
+
+## Build it yourself
+
+You only need this section if you want to rebuild the ZIM, for example from a newer OpenStatutes release. There is no Texas law ZIM in the Kiwix catalog. These scripts build one from public data in about 5 minutes.
+
+### How the pages are laid out
+
 - **Pages:** one per chapter (one per article for the Constitution), 4,993 in all. There's also an index page for each code and a landing page linking all codes.
-- **Section anchors:** every section has its own anchor, e.g. `PE/22.html#sec-22.011`. Section numbers and headings are kept exactly as Texas prints them ("Sec. 22.01. ASSAULT."), so the ZIM's full-text search finds sections by number or by words.
+- **Section anchors:** every section has its own anchor, e.g. `PE/22.html#sec-22.011`. Section numbers and headings are kept exactly as Texas prints them ("Sec. 22.01. ASSAULT.").
 - **Two versions of a section:** where Texas prints two versions of one section, each one is shown under TLC's own heading, e.g. "Text of section as amended by Acts 2021, 87th Leg., R.S., Ch. 849 (S.B. 705), Sec. 35".
-- **Current through:** the 89th Legislature, 2nd Called Session, 2025, plus constitutional amendments approved in November 2025.
-- **Snapshot date:** 2026-03-26. Anything TLC changed after that date is not included.
-- **Not included:** the Texas Administrative Code (agency rules), court opinions, local ordinances, and federal law.
+- **Links:** every statute cross-reference is rewritten to point at the target's page and section anchor inside the archive.
 
-## Build it
+### Build
 
 You'll need Linux, `bash`, `curl`, Python 3.8 or later (standard library only), and Docker for the ZIM step.
 
@@ -47,7 +71,7 @@ SKIP_ZIM=1 ./build.sh                 # stop after the verified HTML site, no Do
 
 To install the finished ZIM into a Kiwix library, run `./ship-zim.sh`. By default it copies into Project N.O.M.A.D.'s library folder; set `KIWIX_LIBRARY` to use a different one. Then rescan the library in Kiwix.
 
-## Verified results (release 2026-03-26)
+### Verified results (release 2026-03-26)
 
 | Check | Result |
 |---|---|
@@ -64,7 +88,7 @@ To install the finished ZIM into a Kiwix library, run `./ship-zim.sh`. By defaul
 
 The release has 127,525 raw `GetStatute.aspx` mentions in total. 1,642 of them are in 7 stale files that the build excludes (see below). The remaining 125,883 are the real links.
 
-## Where the data comes from
+### Where the data comes from
 
 - **Law text:** the Texas Legislative Council, [Texas Constitution and Statutes](https://statutes.capitol.texas.gov/). Texas statutes are public law.
 - **Data:** [OpenStatutes.org](https://openstatutes.org/texconst/), Texas Constitution and Statutes release 2026-03-26, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The release ships each code twice: as JSON, and as TLC's own chapter HTML (`<CODE>.htm.zip`). OpenStatutes is not affiliated with any government agency.
@@ -72,7 +96,7 @@ The release has 127,525 raw `GetStatute.aspx` mentions in total. 1,642 of them a
 
 The ZIM's landing page, every page footer, and the ZIM metadata all credit OpenStatutes.org (CC BY 4.0) and TLC.
 
-## Why the build is "hybrid"
+### Why the build is "hybrid"
 
 The plan was to render everything from the JSON. Checking it section by section against TLC's chapter HTML in the same release showed that **288 of 123,814 sections in the JSON are missing text**, and nothing in the JSON marks the gaps:
 
@@ -103,7 +127,7 @@ It also cleans up these problems in the release:
 - **Internal IDs:** the Constitution and Vernon's Civil Statutes carry internal IDs in place of section numbers. Their real numbers are recovered from TLC's anchors.
 - **Missing sections:** 26 Estates Code sections that exist only in TLC's HTML are taken from there.
 
-## Adapting it to other states
+### Adapting it to other states
 
 **What's known.** As of November 2026, OpenStatutes.org publishes only two collections, and both are Texas: the Constitution and Statutes, and the Texas Administrative Code. There is no data for other states, and they haven't published plans for more.
 
@@ -119,7 +143,7 @@ It also cleans up these problems in the release:
 
 A new state needs its own way to read the source's sections and cross-references. If its source has no HTML to check against, compare the structured text against the official site on a sample of chapters before you trust it.
 
-## Repository layout
+### Repository layout
 
 ```
 build.sh               one-command build
