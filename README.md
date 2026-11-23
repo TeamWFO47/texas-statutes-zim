@@ -4,6 +4,8 @@ Build an offline [Kiwix](https://kiwix.org) ZIM of the **Texas Constitution and 
 
 There is no Texas law ZIM in the Kiwix catalog. These scripts build one from public data in about 5 minutes, and the result is about 31 MB.
 
+**Download:** the ready-built ZIM is on the [v2026.03 release](https://github.com/TeamWFO47/texas-statutes-zim/releases/tag/v2026.03): `texas-statutes_en_all_2026-03.zim`, 31.2 MB, SHA256 `902f527fb7d4399fbd5826cd1314f7529dee68563e81acfe7e7d9c53c2f47fac`. Put it in your Kiwix library folder and rescan. You only need the build steps below if you want to build it yourself.
+
 > **Not an official publication.** This is an unofficial offline copy for reference. It is not affiliated with the State of Texas, the Texas Legislative Council, or any government agency. For anything that matters legally, check the official source at [statutes.capitol.texas.gov](https://statutes.capitol.texas.gov/) or ask a lawyer.
 
 ## What's in the ZIM
